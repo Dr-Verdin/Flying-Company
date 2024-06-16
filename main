@@ -70,13 +70,13 @@ void RR(Dados *cadastro, int cont, Valor valores, int assentos){ // ler e escrev
             for(int i = 0; i < assentos; i++){
                 if(strcmp(cadastro[cont].assento, cadastro[i].assento) != 0){
 
-                    p = (char *)aloca(sizeof(char), 700);
+                    p = (char *)aloca(sizeof(char), 100);
                     scanf(" %s", p);
                     cadastro[cont].nome = (char *)aloca(sizeof(char), strlen(p) + 1);
                     strcpy(cadastro[cont].nome, p);
                     free(p);
 
-                    p = (char *)aloca(sizeof(char), 700);
+                    p = (char *)aloca(sizeof(char), 100);
                     scanf(" %s", p);
                     cadastro[cont].sobrenome = (char *)aloca(sizeof(char), strlen(p) + 1);
                     strcpy(cadastro[cont].sobrenome, p);
