@@ -37,7 +37,7 @@ typedef struct{
     char destino[4];
 } Dados;
 
-// Protótipo das funções:
+// indice das funções:
 void ErroAlocar();
 Abertura AV();
 void ErroArquivo();
@@ -49,6 +49,7 @@ void CR(int qtdReservas, Dados **cadastro);
 void MR(Dados **cadastro, int qtdReservas);
 void CA(Dados **cadastro, int *qtdReservas);
 
+// Função para caso haja algum erro de alocação.
 void ErroAlocar(){
     printf("Erro ao alocar memoria\n");
     exit(1);
@@ -63,11 +64,13 @@ Abertura AV(){
     return abertura;
 }
 
+// Função para caso haja algum erro na abertura no arquivo.
 void ErroArquivo(){
     printf("Erro com o arquivo\n");
     exit(1);
 }
 
+// Função que, quando o programa é religado, devolve para as structs os cadastros que foram salvos nos arquivo.
 void LerArquivo(Dados **cadastro, int *qtdReservas, FILE *arquivo){
     Dados cadastro_aux;
 
@@ -81,6 +84,7 @@ void LerArquivo(Dados **cadastro, int *qtdReservas, FILE *arquivo){
     return;
 }
 
+// Realiza o fechamento do voo, guarda os cadastros realizados no arquivo, informa que o Voo fechou e imprime o cpf, nome, sobrenome e o assento de todos os passageiros. Além disso a função imprime o valor total do Voo.
 void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura){
     fwrite(&abertura, sizeof(Abertura), 1, arquivo);
 
