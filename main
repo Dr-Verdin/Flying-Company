@@ -134,14 +134,15 @@ void RR(Dados *cadastro, int cont, Valor valores, int assentos){ // escrever no 
     fclose(arquivo);
 }
 
-void CR(int assentos, Dados *cadastro){
+void CR(int assentos, Dados *cadastro) {
     char cpf[15];
 
     scanf("%s", cpf);
 
-    for (int i = 0; i < assentos; i++){
-        if (strcmp(cpf, cadastro[i].cpf) == 0){
+    printf("\n");
 
+    for (int i = 0; i < assentos; i++) {
+        if (strcmp(cpf, cadastro[i].cpf) == 0) {
             printf("%s\n", cadastro[i].cpf);
             printf("%s %s\n", cadastro[i].nome, cadastro[i].sobrenome);
             printf("%d/%d/%d\n", cadastro[i].dia, cadastro[i].mes, cadastro[i].ano);
@@ -151,10 +152,9 @@ void CR(int assentos, Dados *cadastro){
             printf("Trecho: %s %s\n", cadastro[i].origem, cadastro[i].destino);
             printf("Valor %.2f\n", cadastro[i].valor);
 
-            for (int j = 0; j < 50; j++){
+            for (int j = 0; j < 50; j++) {
                 printf("-");
             }
-
             printf("\n");
             break;
         }
