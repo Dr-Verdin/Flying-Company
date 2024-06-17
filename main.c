@@ -37,7 +37,7 @@ typedef struct{
     char destino[4];
 } Dados;
 
-// Protótipo das funções:
+// indice das funções:
 void ErroAlocar();
 Abertura AV();
 void ErroArquivo();
@@ -49,6 +49,7 @@ void CR(int qtdReservas, Dados **cadastro);
 void MR(Dados **cadastro, int qtdReservas);
 void CA(Dados **cadastro, int *qtdReservas);
 
+// Função para caso haja algum erro de alocação.
 void ErroAlocar(){
     printf("Erro ao alocar memoria\n");
     exit(1);
@@ -63,11 +64,13 @@ Abertura AV(){
     return abertura;
 }
 
+// Função para caso haja algum erro na abertura no arquivo.
 void ErroArquivo(){
     printf("Erro com o arquivo\n");
     exit(1);
 }
 
+// Função que, quando o programa é religado, devolve para as structs os cadastros que foram salvos nos arquivo.
 void LerArquivo(Dados **cadastro, int *qtdReservas, FILE *arquivo){
     Dados cadastro_aux;
 
@@ -81,6 +84,7 @@ void LerArquivo(Dados **cadastro, int *qtdReservas, FILE *arquivo){
     return;
 }
 
+// Realiza o fechamento do voo guardando os cadastros realizados no arquivo, ela também informa que o Voo fechou e imprime o cpf, nome, sobrenome e o assento de todos os passageiros cadastrados. Além disso a função imprime o valor total obtido desde a Abertura do Voo (AV).
 void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura){
     fwrite(&abertura, sizeof(Abertura), 1, arquivo);
 
@@ -117,7 +121,7 @@ void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura){
     return;
 }
 
-// Adiciona uma nova reserva no voo. Ela declara um ponteiro (Dados *novaReserva) para armazenar esses dados inseridos pelo usuário e retorna para um vetor (cadastro[qtdReservas]) e um contador (int qtdReservas) na main.
+// Adiciona uma nova reserva no voo. Ela declara um ponteiro (Dados *novaReserva) para armazenar esses dados inseridos (da struct com tipo Dados) pelo usuário e retorna para um vetor (cadastro[qtdReservas]) e um contador (int qtdReservas) na main.
 Dados *RR(){
     Dados *novaReserva = (Dados *)malloc(sizeof(Dados) * 1);
 
@@ -165,6 +169,7 @@ void FD(int qtdReservas, Dados **cadastro, FILE *arquivo, Abertura abertura){
     return;
 }
 
+// Com o objetivo de consultar uma reserva posteriormente feita usando a função de Realizar Reserva (RR). A função usa como parametro o cpf utilizado na reserva e a partir daí busca no vetor de cadastro[i] o cpf correspondente e logo em seguida imprime os principais dados daquela struct (cpf, nome completo, data, id do voo, assento, classe, valor, origem e destino)..
 void CR(int qtdReservas, Dados **cadastro){
     char cpf[15];
 
