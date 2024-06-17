@@ -19,25 +19,47 @@ typedef struct
     int ano;
     char idvoo[5];
     char assento[4];
-    char classe[10]; 
+    char classe[10];
     float valor;
     char origem[4];
     char destino[4];
 } Dados;
 
-void CA(Dados **cadastro, int *qtdReservas)
-{
+// Protótipo das funções:
+Abertura AV();
+void LerArquivo(Dados **cadastro, int *qtdReservas, FILE *arquivo);
+
+
+Abertura AV(){
+    Abertura abertura;
+
+    scanf("%d %f %f", &abertura.assentos, &abertura.economica, &abertura.executiva);
+
+    return abertura;
+}
+
+void LerArquivo(Dados **cadastro, int *qtdReservas, FILE *arquivo){
+    Dados cadastro_aux;
+
+    while (fread(&cadastro_aux, sizeof(Dados), 1, arquivo) == 1){
+        cadastro = (Dados **)realloc(cadastro, sizeof(Dados *) * (*qtdReservas + 1));
+        cadastro[*qtdReservas] = (Dados *)malloc(sizeof(Dados));
+        *cadastro[*qtdReservas] = cadastro_aux;
+        (*qtdReservas)++;
+    }
+
+    return;
+}
+
+void CA(Dados **cadastro, int *qtdReservas){
     char cpf[15];
 
     scanf("%s", cpf);
 
-    for (int i = 0; i < *qtdReservas; i++)
-    {
-        if (!strcmp(cpf, cadastro[i]->cpf))
-        {
+    for (int i = 0; i < *qtdReservas; i++){
+        if (!strcmp(cpf, cadastro[i]->cpf)){
             free(cadastro[i]);
-            for (int j = i; j < *qtdReservas - 1; j++)
-            {
+            for (int j = i; j < *qtdReservas - 1; j++){
                 cadastro[j] = cadastro[j + 1];
             }
 
@@ -50,19 +72,15 @@ void CA(Dados **cadastro, int *qtdReservas)
     return;
 }
 
-// PRONTO
-void MR(Dados **cadastro, int qtdReservas)
-{
+void MR(Dados **cadastro, int qtdReservas){
     char cpf[15];
 
     Dados aux;
 
     scanf("%s %s %s %s %s", cpf, aux.nome, aux.sobrenome, aux.cpf, aux.assento);
 
-    for (int i = 0; i < qtdReservas; i++)
-    {
-        if (!strcmp(cpf, cadastro[i]->cpf))
-        {
+    for (int i = 0; i < qtdReservas; i++){
+        if (!strcmp(cpf, cadastro[i]->cpf)){
             strcpy(cadastro[i]->nome, aux.nome);
             strcpy(cadastro[i]->sobrenome, aux.sobrenome);
             strcpy(cadastro[i]->cpf, aux.cpf);
@@ -78,8 +96,7 @@ void MR(Dados **cadastro, int qtdReservas)
             printf("Trecho: %s %s\n", cadastro[i]->origem, cadastro[i]->destino);
             printf("Valor %.2f\n", cadastro[i]->valor);
 
-            for (int j = 0; j < 50; j++)
-            {
+            for (int j = 0; j < 50; j++){
                 printf("-");
             }
 
@@ -91,20 +108,7 @@ void MR(Dados **cadastro, int qtdReservas)
     return;
 }
 
-// PRONTO
-Abertura AV()
-{
-    Abertura abertura;
-
-    scanf("%d %f %f", &abertura.assentos, &abertura.economica, &abertura.executiva);
-
-    return abertura;
-}
-
-// PRONTO
-Dados *RR()
-{
-
+Dados *RR(){
     Dados *novaReserva = (Dados *)malloc(sizeof(Dados) * 1);
 
     scanf(" %s", novaReserva->nome);
@@ -123,17 +127,13 @@ Dados *RR()
     return novaReserva;
 }
 
-// PRONTO
-void CR(int qtdReservas, Dados **cadastro)
-{
+void CR(int qtdReservas, Dados **cadastro){
     char cpf[15];
 
     scanf("%s", cpf);
 
-    for (int i = 0; i < qtdReservas; i++)
-    {
-        if (!strcmp(cpf, cadastro[i]->cpf))
-        {
+    for (int i = 0; i < qtdReservas; i++){
+        if (!strcmp(cpf, cadastro[i]->cpf)){
             printf("%s\n", cadastro[i]->cpf);
             printf("%s %s\n", cadastro[i]->nome, cadastro[i]->sobrenome);
             printf("%d/%d/%d\n", cadastro[i]->dia, cadastro[i]->mes, cadastro[i]->ano);
@@ -143,8 +143,7 @@ void CR(int qtdReservas, Dados **cadastro)
             printf("Trecho: %s %s\n", cadastro[i]->origem, cadastro[i]->destino);
             printf("Valor %.2f\n", cadastro[i]->valor);
 
-            for (int j = 0; j < 50; j++)
-            {
+            for (int j = 0; j < 50; j++){
                 printf("-");
             }
             printf("\n");
@@ -155,13 +154,10 @@ void CR(int qtdReservas, Dados **cadastro)
     return;
 }
 
-// PRONTO
-void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura)
-{
+void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura){
     fwrite(&abertura, sizeof(Abertura), 1, arquivo);
 
-    for (int i = 0; i < qtdReservas; i++)
-    {
+    for (int i = 0; i < qtdReservas; i++){
         fwrite(cadastro[i], sizeof(Dados), 1, arquivo);
     }
 
@@ -169,28 +165,24 @@ void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura)
 
     printf("Voo Fechado!\n\n");
 
-    for (int i = 0; i < qtdReservas; i++)
-    {
+    for (int i = 0; i < qtdReservas; i++){
         printf("%s\n", cadastro[i]->cpf);
         printf("%s %s\n", cadastro[i]->nome, cadastro[i]->sobrenome);
         printf("%s\n\n", cadastro[i]->assento);
     }
 
     float valor_total = 0;
-    for (int k = 0; k < qtdReservas; k++)
-    {
+    for (int k = 0; k < qtdReservas; k++){
         valor_total += cadastro[k]->valor;
     }
 
     printf("Valor Total: %.2f\n", valor_total);
 
-    for (int j = 0; j < 50; j++)
-    {
+    for (int j = 0; j < 50; j++){
         printf("-");
     }
 
-    for (int h = 0; h < qtdReservas; h++)
-    {
+    for (int h = 0; h < qtdReservas; h++){
         free(cadastro[h]);
     }
     free(cadastro);
@@ -198,13 +190,10 @@ void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura)
     return;
 }
 
-// PRONTO
-void FD(int qtdReservas, Dados **cadastro, FILE *arquivo, Abertura abertura)
-{
+void FD(int qtdReservas, Dados **cadastro, FILE *arquivo, Abertura abertura){
     fwrite(&abertura, sizeof(Abertura), 1, arquivo);
 
-    for (int i = 0; i < qtdReservas; i++)
-    {
+    for (int i = 0; i < qtdReservas; i++){
         fwrite(cadastro[i], sizeof(Dados), 1, arquivo);
     }
 
@@ -215,13 +204,13 @@ void FD(int qtdReservas, Dados **cadastro, FILE *arquivo, Abertura abertura)
     printf("Quantidade de reservas: %d\n", qtdReservas);
 
     float valor_parcial = 0;
-    for (int i = 0; i < qtdReservas; i++)
+    for (int i = 0; i < qtdReservas; i++){
         valor_parcial += (*cadastro[i]).valor;
+    }
 
     printf("Posição: %.2f", valor_parcial);
 
-    for (int h = 0; h < qtdReservas; h++)
-    {
+    for (int h = 0; h < qtdReservas; h++){
         free(cadastro[h]);
     }
     free(cadastro);
@@ -229,82 +218,60 @@ void FD(int qtdReservas, Dados **cadastro, FILE *arquivo, Abertura abertura)
     return;
 }
 
-// PRONTO
-void LerArquivo(Dados **cadastro, int *qtdReservas, FILE *arquivo)
-{
-
-    Dados cadastro_aux;
-
-    while (fread(&cadastro_aux, sizeof(Dados), 1, arquivo) == 1)
-    {
-        cadastro = (Dados **)realloc(cadastro, sizeof(Dados *) * (*qtdReservas + 1));
-        cadastro[*qtdReservas] = (Dados *)malloc(sizeof(Dados));
-        *cadastro[*qtdReservas] = cadastro_aux;
-        (*qtdReservas)++;
-    }
-
-    return;
-}
-
-void ErroAlocar()
-{
+void ErroAlocar(){
     printf("Erro ao alocar memoria\n");
     exit(1);
 }
 
-void ErroArquivo()
-{
+void ErroArquivo(){
     printf("Erro com o arquivo\n");
     exit(1);
 }
 
-int main(void)
-{
+int main(void){
     int qtdReservas = 0;
     char comando[3];
     Dados **cadastro;
     cadastro = (Dados **)malloc(sizeof(Dados *) * 1);
-    if (cadastro == NULL)
-        ErroAlocar();
 
+    if (cadastro == NULL){
+        ErroAlocar();
+    }
     // Abro o arquivo para leitura
     FILE *arquivo;
 
     Abertura abertura;
     scanf("%s", comando);
 
-    if (!strcmp(comando, "AV"))
-    {
+    if (!strcmp(comando, "AV")){
         abertura = AV();
-    }
-    else
-    {
+    } else {
         arquivo = fopen("info_voo.txt", "rb");
-        if (arquivo == NULL)
+
+        if (arquivo == NULL){
             ErroArquivo();
+        }
+
         fread(&abertura, sizeof(Abertura), 1, arquivo);
         // Leio o arquivo
         LerArquivo(cadastro, &qtdReservas, arquivo);
 
         fclose(arquivo);
     }
+
     arquivo = fopen("info_voo.txt", "wb+");
-    if (arquivo == NULL)
+    if (arquivo == NULL){
         ErroArquivo();
+    }
 
-    while (1)
-    {
-
-        if (!strcmp(comando, "FV"))
-        {
+    while (1){
+        if (!strcmp(comando, "FV")){
             FV(cadastro, qtdReservas, arquivo, abertura);
             return 0;
         }
 
-        if (!strcmp(comando, "RR"))
-        {
-            if (qtdReservas == abertura.assentos)
-            {
+        if (!strcmp(comando, "RR")){
+            if (qtdReservas == abertura.assentos){
                 FV(cadastro, qtdReservas, arquivo, abertura);
                 return 0;
             }
@@ -314,24 +281,20 @@ int main(void)
             qtdReservas++;
         }
 
-        if (!strcmp(comando, "FD"))
-        {
+        if (!strcmp(comando, "FD")){
             FD(qtdReservas, cadastro, arquivo, abertura);
             return 0;
         }
 
-        if (!strcmp(comando, "CR"))
-        {
+        if (!strcmp(comando, "CR")){
             CR(qtdReservas, cadastro);
         }
 
-        if (!strcmp(comando, "MR"))
-        {
+        if (!strcmp(comando, "MR")){
             MR(cadastro, qtdReservas);
         }
 
-        if (!strcmp(comando, "CA"))
-        {
+        if (!strcmp(comando, "CA")){
             CA(cadastro, &qtdReservas);
         }
 
