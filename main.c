@@ -54,6 +54,7 @@ void ErroAlocar(){
     exit(1);
 }
 
+// Prepara o programa para a realização de reservas, realizando a coleta de informações sobre capacidade da aeronave e preços de classes de reserva. Essa função é realizada apenas uma única vez, independente da quantidade de fechamentos de dia efetuadas..
 Abertura AV(){
     Abertura abertura;
 
