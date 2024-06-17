@@ -121,6 +121,7 @@ void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura){
     return;
 }
 
+// Adiciona uma nova reserva no voo. Ela declara um ponteiro (Dados *novaReserva) para armazenar esses dados inseridos pelo usuário e retorna para um vetor (cadastro[qtdReservas]) e um contador (int qtdReservas) na main.
 Dados *RR(){
     Dados *novaReserva = (Dados *)malloc(sizeof(Dados) * 1);
 
