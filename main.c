@@ -196,6 +196,7 @@ void CR(int qtdReservas, Dados **cadastro){
     return;
 }
 
+// Função que modica a reverva de um passageiro. Ela procura o cadastro através de um cpf que foi informado com a sua chamada, faz a ateração que se foi passada também junto com a chamada e depois imprime a reserva com as com a novas informações.
 void MR(Dados **cadastro, int qtdReservas){
     char cpf[15];
 
