@@ -29,7 +29,7 @@ void RR(Dados *cadastro, int cont); //*
 void CR(int assentos, Dados *cadastro); //*
 void MR(Dados *cadastro, int assentos); //*
 void CA(Dados *cadastro, int assentos, Valor valores); //* (meio)
-void FD(); //* (meio)
+void FD(int* cont, Valor *cadastro); //* (meio)
 void FV(Dados *cadastro, int assentos); //* (meio) 
 
 void *aloca(int N, int J){
