@@ -24,8 +24,8 @@ typedef struct{
 
 // Protótipo das Funções: tem que colocar os dados adquiridos no arquivo
 void *aloca(int N, int J);
-Valor AV(int *assentos);
-void RR(Dados *cadastro, int cont, Valor valores, int assentos);
+void AV(int *assentos, Valor* valores); 
+void RR(Dados *cadastro, int cont); 
 void CR(int assentos, Dados *cadastro);
 void MR(Dados *cadastro, int assentos);
 void CA(Dados *cadastro, int assentos);
@@ -43,18 +43,19 @@ void *aloca(int N, int J){
     return (p);
 }
 
-Valor AV(int *assentos){ // criar um novo arquivo
-    Valor valores;
+void AV(int *assentos, Valor* valores){
 
-    scanf("%d %f %f", assentos, &valores.executiva, &valores.economica);
+    scanf("%d %f %f", assentos, &valores->executiva, &valores->economica);
 
-    FILE *arquivo = fopen("info_voo.txt", "w");
-    if (arquivo == NULL){
+    return;
+
+    FILE *arquivo;
+    arquivo = fopen("info_voo.txt", "w");
+    if(arquivo == NULL){
         printf("Erro na abertura do arquivo!");
     }
 
     fclose(arquivo);
-    return valores;
 }
 
 void RR(Dados *cadastro, int cont) {
@@ -268,17 +269,20 @@ int main(void){
 
     scanf("%s", comando);
 
-    if (strcmp(comando, "AV") == 0){
-        valores = AV(assentos);
+    if(strcmp(comando, "AV")==0){
+
+        AV(&assentos, &valores);
     }
 
     do{
         scanf("%s", comando);
 
-        if (strcmp(comando, "RR") == 0){
-            cadastro = (Dados *)aloca(sizeof(Dados), assentos);
+        if(strcmp(comando, "RR")==0){
 
-            RR(cadastro, cont, valores, assentos);
+            cadastro = (Dados*)aloca(sizeof(Dados), assentos);
+
+            RR(cadastro, cont);
+
             cont++;
         }
 
