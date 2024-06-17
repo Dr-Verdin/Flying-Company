@@ -2,6 +2,17 @@
 #include <string.h>
 #include <stdlib.h>
 
+/*                                                  Projeto: 
+                                    Sistema de cadastro de passagens aéreas.
+                    
+                            Integrantes: - Camila Piscioneri Magalhães, N°USP: 15697249;
+                                         - Matheus Guilherme Ferreira Mendonça Learte, N°USP: 15522362.
+                                
+                            Obs: Por favor desconsiderar o outro trabalho enviado com a nossa participação. 
+
+------------------------------------------------------------------------------------------------------------------------------*/
+
+/* */
 typedef struct{
     int assentos;
     float executiva;
