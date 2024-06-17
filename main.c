@@ -149,14 +149,15 @@ void CR(int assentos, Dados *cadastro) {
 }
 
 void MR(Dados *cadastro, int assentos){ 
-    char cpf[15], *nome, *sobrenome, assento_mod[4];
+    char cpf[15];
     int encontrado = 0;
 
-    scanf("%s %s %s %s %s", cpf, nome, sobrenome, cpf, assento_mod);
+    scanf(" %s", cpf);
 
     for (int i = 0; i < assentos; i++){
         if (strcmp(cpf, cadastro[i].cpf) == 0){
-
+            
+            scanf(" %s %s %s %s", cadastro[i].nome, cadastro[i].sobrenome, cadastro[i].cpf, cadastro[i].assento);
             encontrado = 1;
 
             printf("Reserva Modificada:\n");
@@ -164,19 +165,6 @@ void MR(Dados *cadastro, int assentos){
             printf("%s %s\n", cadastro[i].nome, cadastro[i].sobrenome);
             printf("%d/%d/%d\n", cadastro[i].dia, cadastro[i].mes, cadastro[i].ano);
             printf("Voo: %s\n", cadastro[i].idvoo);
-            
-            FILE *arquivo = fopen("info_voo.txt", "w");
-            if(arquivo == NULL){
-                printf("Erro ao abrir o arquivo!\n");
-                return;
-            }
-            strcpy(cadastro[i].assento, assento_mod);
-            fprintf(arquivo, "%s\n", cadastro[i].assento);
-            printf("Assento: %s\n", cadastro[i].assento);
-
-            printf("Classe: %s\n", cadastro[i].classe);
-            printf("Trecho: %s %s\n", cadastro[i].origem, cadastro[i].destino);
-            printf("Valor %.2f\n", cadastro[i].valor);
 
             for (int j = 0; j < 50; j++){
                 printf("-");
