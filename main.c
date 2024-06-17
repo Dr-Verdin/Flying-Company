@@ -29,7 +29,7 @@ void RR(Dados *cadastro, int cont); //*
 void CR(int assentos, Dados *cadastro); //*
 void MR(Dados *cadastro, int assentos); //*
 void CA(Dados *cadastro, int assentos, Valor valores); //* (meio)
-void FD(); //* (meio)
+void FD(int* cont, Dados *cadastro); //* (meio)
 void FV(Dados *cadastro, int assentos); //* (meio) 
 
 void *aloca(int N, int J){
@@ -193,7 +193,7 @@ void CA(Dados *cadastro, int assentos, Valor valores){
     }
 }
 
-void FD(int* cont, Valor *cadastro){ 
+void FD(int* cont, Dados *cadastro){ 
     int valor_parcial = 0.0;
     printf("Fechamento do dia:\n");
     
