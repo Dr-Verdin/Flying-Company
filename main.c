@@ -27,8 +27,8 @@ void *aloca(int N, int J); //*
 void AV(int *assentos, Valor* valores); //*
 void RR(Dados *cadastro, int cont); //*
 void CR(int assentos, Dados *cadastro); //*
-void MR(Dados *cadastro, int assentos);
-void CA(Dados *cadastro, int assentos, Valor valores);
+void MR(Dados *cadastro, int assentos); //*
+void CA(Dados *cadastro, int assentos, Valor valores); //* (meio)
 void FD(); // implementar FD
 void FV(Dados *cadastro, int assentos);
 
@@ -48,14 +48,6 @@ void AV(int *assentos, Valor* valores){
     scanf("%d %f %f", assentos, &valores->executiva, &valores->economica);
 
     return;
-
-    FILE *arquivo;
-    arquivo = fopen("info_voo.txt", "w");
-    if(arquivo == NULL){
-        printf("Erro na abertura do arquivo!");
-    }
-
-    fclose(arquivo);
 }
 
 void RR(Dados *cadastro, int cont) {
@@ -100,25 +92,6 @@ void RR(Dados *cadastro, int cont) {
     cadastro[cont].destino = (char*) aloca(sizeof(char), strlen(p) + 1);
     strcpy(cadastro[cont].destino, p);
     free(p);
-
-    FILE *arquivo = fopen("info_voo.txt", "a");
-    if (arquivo == NULL) {
-        printf("Erro na abertura do arquivo!");
-        return;
-    }
-
-    fprintf(arquivo, "%299s\n", cadastro[cont].nome);
-    fprintf(arquivo, "%299s\n", cadastro[cont].sobrenome);
-    fprintf(arquivo, "%14s", cadastro[cont].cpf);
-    fprintf(arquivo, "%d %d %d\n", cadastro[cont].dia, cadastro[cont].mes, cadastro[cont].ano);
-    fprintf(arquivo, "%4s\n", cadastro[cont].idvoo);
-    fprintf(arquivo, "%3s\n", cadastro[cont].assento);
-    fprintf(arquivo, "%9s\n", cadastro[cont].classe);
-    fprintf(arquivo, "%.2f\n", cadastro[cont].valor);
-    fprintf(arquivo, "%s\n", cadastro[cont].origem);
-    fprintf(arquivo, "%s\n", cadastro[cont].destino);
-
-    fclose(arquivo);
 }
 
 void CR(int assentos, Dados *cadastro) {
@@ -186,12 +159,6 @@ void CA(Dados *cadastro, int assentos, Valor valores){
 
     scanf("%s", cpf);
 
-    FILE *arquivo = fopen("info_voo.txt", "w");
-    if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo para escrita!\n");
-        return;
-    }
-
     for (int i = 0; i < assentos; i++){
         if (strcmp(cpf, cadastro[i].cpf) == 0){
 
@@ -224,8 +191,6 @@ void CA(Dados *cadastro, int assentos, Valor valores){
     if (!encontrado){
         printf("Reserva não encontrada.\n");
     }
-
-    fclose(arquivo);
 }
 
 void FD(){ 
