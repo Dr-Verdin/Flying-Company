@@ -59,22 +59,16 @@ Valor AV(int *assentos){
 }
 
 void RR(Dados *cadastro, int cont) {
-    FILE *arquivo = fopen("info_voo.txt", "w");
-    if (arquivo == NULL){
-        printf("Erro na abertura do arquivo!");
-    }
-
     char *p;
 
-    p = (char*) aloca(sizeof(char), 700);
-    scanf(" %699s", p);
+    p = (char*) aloca(sizeof(char), 300);
+    scanf(" %299s", p);
     cadastro[cont].nome = (char*) aloca(sizeof(char), strlen(p) + 1);
     strcpy(cadastro[cont].nome, p);
     free(p);
-    fprintf(arquivo, "%s");
 
-    p = (char*) aloca(sizeof(char), 700);
-    scanf(" %699s", p);
+    p = (char*) aloca(sizeof(char), 300);
+    scanf(" %299s", p);
     cadastro[cont].sobrenome = (char*) aloca(sizeof(char), strlen(p) + 1);
     strcpy(cadastro[cont].sobrenome, p);
     free(p);
@@ -83,8 +77,8 @@ void RR(Dados *cadastro, int cont) {
 
     scanf("%d %d %d", &cadastro[cont].dia, &cadastro[cont].mes, &cadastro[cont].ano);
 
-    p = (char*) aloca(sizeof(char), 50);
-    scanf(" %49s", p);
+    p = (char*) aloca(sizeof(char), 5);
+    scanf(" %4s", p);
     cadastro[cont].idvoo = (char*) aloca(sizeof(char), strlen(p) + 1);
     strcpy(cadastro[cont].idvoo, p);
     free(p);
@@ -106,6 +100,25 @@ void RR(Dados *cadastro, int cont) {
     cadastro[cont].destino = (char*) aloca(sizeof(char), strlen(p) + 1);
     strcpy(cadastro[cont].destino, p);
     free(p);
+
+    FILE *arquivo = fopen("info_voo.txt", "a");
+    if (arquivo == NULL) {
+        printf("Erro na abertura do arquivo!");
+        return;
+    }
+
+    fprintf(arquivo, "%299s\n", cadastro[cont].nome);
+    fprintf(arquivo, "%299s\n", cadastro[cont].sobrenome);
+    fprintf(arquivo, "%14s", cadastro[cont].cpf);
+    fprintf(arquivo, "%d %d %d\n", cadastro[cont].dia, cadastro[cont].mes, cadastro[cont].ano);
+    fprintf(arquivo, "%4s\n", cadastro[cont].idvoo);
+    fprintf(arquivo, "%3s\n", cadastro[cont].assento);
+    fprintf(arquivo, "%9s\n", cadastro[cont].classe);
+    fprintf(arquivo, "%.2f\n", cadastro[cont].valor);
+    fprintf(arquivo, "%s\n", cadastro[cont].origem);
+    fprintf(arquivo, "%s\n", cadastro[cont].destino);
+
+    fclose(arquivo);
 }
 
 void CR(int assentos, Dados *cadastro) {
