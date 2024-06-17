@@ -1,25 +1,27 @@
 /*                                                  Projeto: 
                                     Sistema de cadastro de passagens aéreas.
                     
-                          Integrantes:- Camila Piscioneri Magalhães, N°USP: 15697249;
-                                      - Matheus Guilherme Ferreira Mendonça Learte, N°USP: 15522362.
+                            Integrantes:- Camila Piscioneri Magalhães, N°USP: 15697249;
+                                        - Matheus Guilherme Ferreira Mendonça Learte, N°USP: 15522362.
                                 
-                          Obs: Por favor desconsiderar o outro trabalho enviado com a nossa participação. 
+                            Obs: Por favor desconsiderar o outro trabalho enviado com a nossa participação. 
 
-------------------------------------------------------------------------------------------------------------------------------------*/
+-------------------------------------------------------------------------------------------------------------------------------*/
 
 // Bibliotecas utilizadas:
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-/* */
+// Structs necessárias durante a execução do programa:
+// Utilizada na função de Abertura de Voo:
 typedef struct{
     int assentos;
     float executiva;
     float economica;
 } Abertura;
 
+// Utilizada na maioria das outras funções: 
 typedef struct{
     char nome[50];
     char sobrenome[50];
@@ -164,7 +166,7 @@ void FD(int qtdReservas, Dados **cadastro, FILE *arquivo, Abertura abertura){
 void CR(int qtdReservas, Dados **cadastro){
     char cpf[15];
 
-    scanf("%s", cpf);
+    scanf(" %s", cpf);
 
     for (int i = 0; i < qtdReservas; i++){
         if (!strcmp(cpf, cadastro[i]->cpf)){
@@ -193,7 +195,7 @@ void MR(Dados **cadastro, int qtdReservas){
 
     Dados aux;
 
-    scanf("%s %s %s %s %s", cpf, aux.nome, aux.sobrenome, aux.cpf, aux.assento);
+    scanf(" %s %s %s %s %s", cpf, aux.nome, aux.sobrenome, aux.cpf, aux.assento);
 
     for (int i = 0; i < qtdReservas; i++){
         if (!strcmp(cpf, cadastro[i]->cpf)){
@@ -227,7 +229,7 @@ void MR(Dados **cadastro, int qtdReservas){
 void CA(Dados **cadastro, int *qtdReservas){
     char cpf[15];
 
-    scanf("%s", cpf);
+    scanf(" %s", cpf);
 
     for (int i = 0; i < *qtdReservas; i++){
         if (!strcmp(cpf, cadastro[i]->cpf)){
@@ -258,7 +260,7 @@ int main(void){
     FILE *arquivo;
 
     Abertura abertura;
-    scanf("%s", comando);
+    scanf(" %s", comando);
 
     if (!strcmp(comando, "AV")){
         abertura = AV();
@@ -315,7 +317,7 @@ int main(void){
             CA(cadastro, &qtdReservas);
         }
 
-        scanf("%s", comando);
+        scanf(" %s", comando);
     }
 
     return 0;
