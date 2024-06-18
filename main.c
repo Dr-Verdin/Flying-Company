@@ -142,6 +142,7 @@ Dados *RR(){
     return novaReserva;
 }
 
+// Tem como objetivo imprimir o número de reservas total que foram feitas até o momento em que a função foi chamada, guardar no arquivo as reservas feitas (para se poder utilizar essas informções depois). Depois que a função termina o programa é fechado.
 void FD(int qtdReservas, Dados **cadastro, FILE *arquivo, Abertura abertura){
     fwrite(&abertura, sizeof(Abertura), 1, arquivo);
 
