@@ -260,7 +260,7 @@ void CA(Dados **cadastro, int *qtdReservas){
     return;
 }
 
-// Função principal onde o arquivo é administrado, as principais variáveis que utilizamos no codigo estão declaradas e onde se há a chamada de cada função de acordo com o que foi digitado por quem está realizando o cadastro.
+// Função principal onde o arquivo é administrado, as principais variáveis que utilizamos no codigo estão declaradas e onde se há a chamada de cada função de acordo com o que foi digitado pelo usuário, para isso foi utilizado comandos de repetição e de seleção.
 int main(void){
     int qtdReservas = 0;
     char comando[3];
