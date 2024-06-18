@@ -49,7 +49,7 @@ void CR(int qtdReservas, Dados **cadastro);
 void MR(Dados **cadastro, int qtdReservas);
 void CA(Dados **cadastro, int *qtdReservas);
 
-// Função para caso haja algum erro de alocação.
+// Função para caso haja algum erro de alocação de memória.
 void ErroAlocar(){
     printf("Erro ao alocar memoria\n");
     exit(1);
@@ -70,7 +70,7 @@ void ErroArquivo(){
     exit(1);
 }
 
-// Função que, quando o programa é religado, devolve para as structs os cadastros que foram salvos nos arquivo.
+// Função que tem como responsabilidade, quando o programa é religado, devolver para as structs os cadastros que foram salvos no arquivo antes do Fechamento do Dia (FD).
 void LerArquivo(Dados **cadastro, int *qtdReservas, FILE *arquivo){
     Dados cadastro_aux;
 
@@ -169,7 +169,7 @@ void FD(int qtdReservas, Dados **cadastro, FILE *arquivo, Abertura abertura){
     return;
 }
 
-// Com o objetivo de consultar uma reserva posteriormente feita usando a função de Realizar Reserva (RR). A função usa como parametro o cpf utilizado na reserva e a partir daí busca no vetor de cadastro[i] o cpf correspondente e logo em seguida imprime os principais dados daquela struct (cpf, nome completo, data, id do voo, assento, classe, valor, origem e destino)..
+// Com o objetivo de consultar uma reserva posteriormente feita usando a função de Realizar Reserva (RR). A função usa como parametro o cpf utilizado na reserva e a partir daí busca no cadastro o cpf correspondente e logo em seguida imprime os principais dados daquela struct (cpf, nome completo, data, id do voo, assento, classe, valor, origem e destino).
 void CR(int qtdReservas, Dados **cadastro){
     char cpf[15];
 
@@ -197,7 +197,7 @@ void CR(int qtdReservas, Dados **cadastro){
     return;
 }
 
-// Função que modica a reverva de um passageiro. Ela procura o cadastro através de um cpf que foi informado com a sua chamada, faz a ateração que se foi passada também junto com a chamada e depois imprime a reserva com as com a novas informações.
+// Função que modica a reverva de um passageiro. Ela procura no cadastro através de um cpf que foi informado com a sua chamada e logo em seguida faz a ateração que se foi passada também junto com a chamada (podem ser feitas alterações no nome, sobrenome, cpf ou/e assento) e depois imprime a reserva com as informações alteradas e não alteradas.
 void MR(Dados **cadastro, int qtdReservas){
     char cpf[15];
 
