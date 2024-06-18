@@ -39,15 +39,15 @@ typedef struct{
 
 // indice das funções:
 void ErroAlocar();
-Abertura AV();
-void ErroArquivo();
-void LerArquivo(Dados **cadastro, int *qtdReservas, FILE *arquivo);
-void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura);
-Dados *RR();
-void FD(int qtdReservas, Dados **cadastro, FILE *arquivo, Abertura abertura);
-void CR(int qtdReservas, Dados **cadastro);
-void MR(Dados **cadastro, int qtdReservas);
-void CA(Dados **cadastro, int *qtdReservas);
+Abertura AV(); // Abertura de Voo
+void ErroArquivo(); 
+void LerArquivo(Dados **cadastro, int *qtdReservas, FILE *arquivo); 
+void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura); // Fechamento do Voo
+Dados *RR(); // Realizar Reserva
+void FD(int qtdReservas, Dados **cadastro, FILE *arquivo, Abertura abertura); // Fechamento do Dia
+void CR(int qtdReservas, Dados **cadastro); // Consultar Reserva
+void MR(Dados **cadastro, int qtdReservas); // Modificar Reserva
+void CA(Dados **cadastro, int *qtdReservas); // Cancelar Reserva
 
 // Função para caso haja algum erro de alocação de memória.
 void ErroAlocar(){
@@ -84,7 +84,7 @@ void LerArquivo(Dados **cadastro, int *qtdReservas, FILE *arquivo){
     return;
 }
 
-// Realiza o fechamento do voo guardando os cadastros realizados no arquivo, ela também informa que o Voo fechou e imprime o cpf, nome, sobrenome e o assento de todos os passageiros cadastrados. Além disso a função imprime o valor total obtido desde a Abertura do Voo (AV).
+// Realiza o fechamento do voo guardando os cadastros realizados no arquivo, ela também informa que o Voo fechou e imprime o cpf, nome, sobrenome e o assento de todos os passageiros cadastrados. Além disso a função imprime o valor total obtido desde a Abertura do Voo (AV). Depois do comando FV não se pode mais fazer alterações no voo, ele fecha permamentemente com os dados inseridos até então.
 void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura){
     fwrite(&abertura, sizeof(Abertura), 1, arquivo);
 
@@ -116,7 +116,7 @@ void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura){
     for (int h = 0; h < qtdReservas; h++){
         free(cadastro[h]);
     }
-    
+
     free(cadastro);
 
     return;
@@ -142,7 +142,7 @@ Dados *RR(){
     return novaReserva;
 }
 
-// Tem como objetivo imprimir o número de reservas total que foram feitas até o momento em que a função foi chamada, guardar no arquivo as reservas feitas (para se poder utilizar essas informções depois). Depois que a função termina o programa é fechado.
+// Tem como objetivo imprimir o número de reservas total que foram feitas até o momento em que a função foi chamada, guardar no arquivo as reservas feitas (para se poder utilizar essas informções depois do comando FD). Depois que a função termina o programa é fechado e ele pode ser iniciado novamente com todas as informações anteriormente inseridas antes de encerrar, ao contrário da função de Fechamento de Voo (FV) que fecha o voo permamentemente.
 void FD(int qtdReservas, Dados **cadastro, FILE *arquivo, Abertura abertura){
     fwrite(&abertura, sizeof(Abertura), 1, arquivo);
 
