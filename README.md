@@ -17,5 +17,73 @@ Uma companhia área deseja informatizar seu sistema de reserva de passagens, e v
 
 ## Comandos e Saídas
 
-Assume-se que os comandos sempre serão apresentados de forma correta e que sempre serão fornecidos códigos e valores válidos, portanto não é necessário tratar esse tipo de erro. As funcionalidades do sistema devem ser requisitadas por meio de comandos seguidos dos dados necessários. Os comandos são representados por duas letras maiúsculas. Os comandos que o sistema deve reconhecer são especificados a seguir. O símbolo _ denota um espaço em branco.
+Assume-se que os comandos sempre serão apresentados de forma correta e que sempre serão fornecidos códigos e valores válidos, portanto não é necessário tratar esse tipo de erro. As funcionalidades do sistema devem ser requisitadas por meio de comandos seguidos dos dados necessários. Os comandos são representados por duas 
+letras maiúsculas. Os comandos que o sistema deve reconhecer são especificados a seguir. O símbolo _ denota um espaço em branco.
 
+- 'Abertura do voo': AV_<quantidade assentos>_<valor econômica>_<valor executiva>
+
+Realizar reserva:
+RR_<nome >_<sobrenome>_<CPF>_<data viagem>_<número do voo>_<assento>_<classe>_<valor>_<origem>_<destino>
+
+**Consultar reserva**
+CR_<CPF>
+
+**Modificar reserva**
+MR_<CPF consulta>_<nome>_<sobrenome>_<CPF>_<assento>
+
+**Cancelar reserva**
+CA_<CPF>
+
+**Fechamento do dia**
+FD
+
+**Fechamento do voo**
+FV
+
+Quatro comandos exigem que informações sejam apresentadas na tela: **CR, MR, FV e FD**. As saídas para estes comandos devem ser apresentadas da seguinte maneira:
+
+**CR**
+<CPF>
+<nome >_<sobrenome>
+<data viagem>
+Voo:_<número do voo>
+Assento:_<assento>
+Classe:_<classe>
+Trecho:_<origem>_<destino>
+Valor:_<valor>
+--------------------------------------------------
+
+**MR**
+Reserva Modificada:
+<CPF>
+<nome >_<sobrenome>
+<data viagem>
+Voo:_<número do voo>
+Assento:_<assento>
+Classe:_<classe>
+Trecho:_<origem>_<destino>
+Valor:_<valor>
+--------------------------------------------------
+
+**FV**
+Voo Fechado!
+<CPF>
+<nome>_<sobrenome>
+<assento>
+<CPF>
+<nome>_<sobrenome>
+<assento>
+…
+<CPF>
+<nome>_<sobrenome>
+<assento>
+Valor Total:_<valor>
+--------------------------------------------------
+
+**FD**
+Fechamento do dia:
+Quantidade de reservas:_<quantidade>
+Posição:_<valor total até o momento>
+--------------------------------------------------
+
+Note que cada saída deve ser finalizada com uma linha contendo 50 hífens.
