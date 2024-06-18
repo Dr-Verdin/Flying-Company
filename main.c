@@ -238,6 +238,7 @@ void MR(Dados **cadastro, int qtdReservas){
     return;
 }
 
+// Seu objetivo é apagar o cadastro de algum passageiro do sistema. A função realiza essa ação pegando o cpf, que foi informado junto com sua chamada, depois procurando o cadastro no sistema e após ser encontrado ele é totalmente apagado.
 void CA(Dados **cadastro, int *qtdReservas){
     char cpf[15];
 
