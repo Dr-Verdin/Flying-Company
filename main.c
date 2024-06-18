@@ -238,7 +238,7 @@ void MR(Dados **cadastro, int qtdReservas){
     return;
 }
 
-// Seu objetivo é apagar o cadastro de algum passageiro do sistema. A função realiza essa ação pegando o cpf, que foi informado junto com sua chamada, depois procurando o cadastro no sistema e após ser encontrado ele é totalmente apagado.
+// Seu objetivo é apagar o cadastro de algum passageiro do sistema, ou seja, cancelar uma reserva. A função realiza essa ação pegando o cpf, que foi informado junto com sua chamada, depois procurando o cadastro no sistema e após ser encontrado ele é totalmente apagado e a quantidade de reservas (contador) também é diminuido.
 void CA(Dados **cadastro, int *qtdReservas){
     char cpf[15];
 
@@ -269,7 +269,7 @@ int main(void){
     if (cadastro == NULL){
         ErroAlocar();
     }
-    // Abro o arquivo para leitura
+    
     FILE *arquivo;
 
     Abertura abertura;
@@ -285,7 +285,7 @@ int main(void){
         }
 
         fread(&abertura, sizeof(Abertura), 1, arquivo);
-        // Leio o arquivo
+        
         LerArquivo(cadastro, &qtdReservas, arquivo);
 
         fclose(arquivo);
