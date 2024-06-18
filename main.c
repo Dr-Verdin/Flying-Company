@@ -38,9 +38,9 @@ typedef struct{
 } Dados;
 
 // indice das funções:
-void ErroAlocar();
+void ErroAlocar(); //Erro de alocação
 Abertura AV(); // Abertura de Voo
-void ErroArquivo(); 
+void ErroArquivo(); //Erro na abertura de arquivo
 void LerArquivo(Dados **cadastro, int *qtdReservas, FILE *arquivo); 
 void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura); // Fechamento do Voo
 Dados *RR(); // Realizar Reserva
@@ -260,6 +260,7 @@ void CA(Dados **cadastro, int *qtdReservas){
     return;
 }
 
+// Função principal onde o arquivo é administrado, as principais variáveis que utilizamos no codigo estão declaradas e onde se há a chamada de cada função de acordo com o que foi digitado por quem está realizando o cadastro.
 int main(void){
     int qtdReservas = 0;
     char comando[3];
