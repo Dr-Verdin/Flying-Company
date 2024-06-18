@@ -1,17 +1,17 @@
 /*                                                    Projeto: 
                                         Sistema de cadastro de passagens aéreas.
                     
-                              Integrantes:- Camila Piscioneri Magalhães, N°USP: 15697249;
-                                          - Matheus Guilherme Ferreira Mendonça Learte, N°USP: 15522362.
+                                Integrantes:- Camila Piscioneri Magalhães, N°USP: 15697249;
+                                            - Matheus Guilherme Ferreira Mendonça Learte, N°USP: 15522362.
                                 
                         Obs: Por favor desconsiderar o outro trabalho enviado com a nossa participação.
 
-                                                     Objetivo:
+                                                    Objetivo:
 
                     Uma companhia área deseja informatizar seu sistema de reserva de passagens, e você e sua
-                 equipe serão os encarregados do projeto e desenvolvimento. Para esta versão inicial a companhia
-                  espera um sistema simplificado, considerando uma única aeronave, que reserve apenas trecho de
-                                 voo simples (único trecho) e para um único passageiro por vez.
+                equipe serão os encarregados do projeto e desenvolvimento. Para esta versão inicial a companhia
+                    espera um sistema simplificado, considerando uma única aeronave, que reserve apenas trecho de
+                                voo simples (único trecho) e para um único passageiro por vez.
 
 -------------------------------------------------------------------------------------------------------------------------------*/
 
