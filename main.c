@@ -116,6 +116,7 @@ void FV(Dados **cadastro, int qtdReservas, FILE *arquivo, Abertura abertura){
     for (int h = 0; h < qtdReservas; h++){
         free(cadastro[h]);
     }
+    
     free(cadastro);
 
     return;
@@ -164,6 +165,7 @@ void FD(int qtdReservas, Dados **cadastro, FILE *arquivo, Abertura abertura){
     for (int h = 0; h < qtdReservas; h++){
         free(cadastro[h]);
     }
+
     free(cadastro);
 
     return;
@@ -189,6 +191,7 @@ void CR(int qtdReservas, Dados **cadastro){
             for (int j = 0; j < 50; j++){
                 printf("-");
             }
+
             printf("\n");
             break;
         }
