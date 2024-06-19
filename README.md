@@ -1,4 +1,4 @@
-# flying-company
+# Flying-Company
 
 ## projeto
 
