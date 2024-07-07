@@ -87,3 +87,12 @@ Posição:_<valor total até o momento>
 --------------------------------------------------
 
 Note que cada saída deve ser finalizada com uma linha contendo 50 hífens.
+
+## Agradecimentos
+
+Antonio
+
+## Alunos
+
+- Camila Piscioneri Magalhães ([Dr.Verdin :alien:](https://github.com/Dr-Verdin)).
+- Matheus...
